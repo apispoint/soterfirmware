@@ -1,0 +1,11 @@
+[Unit]
+Description=Sensor Support Service
+After=bb-wl18xx-wlan0.service
+Before=webapp.service
+
+[Service]
+Restart=on-failure
+ExecStart=/bin/sh /opt/apispoint/provision/services/sensorservice.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,11 @@
+[Unit]
+Description=MagCal Calibration Support Service
+After=bb-wl18xx-wlan0.service
+Before=webapp.service
+
+[Service]
+Restart=on-failure
+ExecStart=/bin/sh /opt/apispoint/provision/services/magcalservice.sh
+
+[Install]
+WantedBy=multi-user.target

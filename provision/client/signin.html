@@ -1,0 +1,74 @@
+<div class="row">
+    <div class="col s12 m8 offset-m2" ng-show="!mfareturn">
+        <h6 style="display:inline" class="valign grey-text light">
+        Create a SO+ER Cloud account at <a href="https://soter.apispoint.com" target="_blank">soter.apispoint.com</a> and use those credentials here to provision your device
+        </h6>
+    </div>
+</div>
+
+<div class="row" ng-show="mfareturn">
+  <div class="input-field col s12 m8 offset-m2 grey-text text-darken-2 thin">
+    Scan the QR code below or manually enter the shared key into a
+    timebased one-time password (TOTP) application.
+    <br><br>
+    MFA configuration is done only once for all new users.
+    <ul class="collapsible" dom-on-create="uiCreated()">
+        <li class="active">
+            <div class="collapsible-header active">Scan QR Code</div>
+            <div class="collapsible-body center-align white">
+                <img ng-src="{{otp.qrcode}}" alt="QR Code"/>
+            </div>
+        </li>
+        <li>
+            <div class="collapsible-header">Shared Key</div>
+            <div class="collapsible-body center-align">
+                <p>{{otp.secret}}</p>
+            </div>
+        </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row" ng-show="mfa && !mfareturn">
+    <div class="input-field col s12 m8 offset-m2">
+        <input ng-model="credentials.otp.code" id="mfacode" type="text">
+        <label ng-class="{'active': credentials.otp}" for="mfacode">MFA Code</label>
+    </div>
+</div>
+<div class="row" ng-show="!mfa && !mfareturn">
+    <div class="input-field col s12 m8 offset-m2">
+        <input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-model="credentials.user" class="validate" id="email" type="email">
+        <label for="email">Email</label>
+    </div>
+</div>
+<div class="row" ng-show="!mfa && !mfareturn">
+    <div class="input-field col s12 m8 offset-m2">
+        <input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-model="credentials.password" class="validate" id="password" type="{{showsignpasswd}}">
+        <label for="password">Password</label>
+    </div>
+</div>
+
+<div class="row" ng-show="!mfa && !mfareturn">
+  <div class="input-field col s12 m8 offset-m2">
+    <label>
+      <input class="checkbox-blue" type="checkbox" ng-click="toggleSigninPassword($event)"/>
+      <span>Show sign in password</span>
+    </label>
+  </div>
+</div>
+
+<div class="row">
+  <div class="input-field col s12 m8 offset-m2">
+    <h6 class="grey-text light">{{message}}</h6>
+  </div>
+</div>
+
+<div class="row" ng-show="running">
+  <div class="progress">
+      <div class="indeterminate blue"></div>
+  </div>
+</div>
+<div class="row center-align" ng-show="!running && !mfareturn">
+  <a class="waves-effect waves-light btn-flat blue-text text-darken-1 text-nowrap" ng-class="{'disabled': !(credentials.user && credentials.password) || passwordconf}" ng-click="login(true)">Sign in</a>
+  <a class="waves-effect waves-light btn-flat blue-text text-darken-1" ng-click="goBack()">Back</a>
+</div>

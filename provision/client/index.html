@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html ng-app="apApplication">
+  <head>
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/apstyle.css" media="screen,projection"/>
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>SO+ER | Sensor</title>
+
+    <link rel='icon'                             href='webicons/apisfavicon.png'/>
+    <link rel="apple-touch-icon" sizes="57x57"   href="webicons/Icon-57.png">
+    <link rel="apple-touch-icon" sizes="76x76"   href="webicons/Icon-76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="webicons/Icon-120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="webicons/Icon-152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="webicons/Icon-167.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="webicons/Icon-180.png">
+    <link rel="icon"             sizes="192x192" href="webicons/Icon-192.png">
+    <link rel="icon"             sizes="128x128" href="webicons/Icon-128.png">
+  </head>
+
+  <body>
+
+    <main>
+    <div style="background-color:rgb(90,160,200);margin-top:0px;padding-top:10px;padding-bottom:0px" class="card light white-text z-depth-1" ng-controller="ApplicationCtrl">
+      <div class="thin white-text valign-wrapper row flexbox" style="margin-top:5px">
+          <img class="round-img" src="images/soter_t_bow.svg" alt="Soter Logo" style="width:24px;margin-right:10px" />
+          <h7 class="thin">SO+ER | Sensor</h7>
+      </div>
+      <div class="card-tabs">
+        <ul class="tabs tabs-fixed-width tabs-transparent">
+          <li class="tab"><a class="active" href="#calibrate"><img alt="1" src="images/1.svg" style="width:25px;vertical-align:middle;padding-right:5px"/>Calibrate</a></li>
+          <li class="tab"><a href="#provision"><img alt="2" src="images/2.svg" style="width:25px;vertical-align:middle;padding-right:5px"/>Provision</a></li>
+          <li class="tab"><a href="#configure">Wireless</a></li>
+          <li class="tab"><a href="#diagnostic">Diagnostic</a></li>
+        </ul>
+      </div>
+      <div class="card-content grey lighten-5 s12">
+        <div id="calibrate">
+          <div class="row center-align">
+              <img alt="Calibrate" src="images/calibrate.svg" style="width:42px;vertical-align:middle"/>
+              <h5 style="padding-left:10px;vertical-align:middle;display:inline;" class="grey-text text-darken-2 thin">Calibrate compass</h5>
+          </div>
+          <div class="row" ng-include="'calibrate.html'" ng-controller="CalibrateCtrl"></div>
+        </div>
+        <div id="provision">
+          <div class="row center-align">
+              <img alt="Provision" src="images/cloud.svg" style="width:42px;vertical-align:middle"/>
+              <h5 style="padding-left:10px;vertical-align:middle;display:inline;" class="grey-text text-darken-2 thin">Provision device</h5>
+          </div>
+          <div class="row" ng-show="showconfig" ng-include="'provision.html'" ng-controller="ProvisionCtrl"></div>
+          <div class="row" ng-hide="showconfig" ng-include="'signin.html'" ng-controller="SigninCtrl"></div>
+        </div>
+        <div id="configure">
+          <div class="row center-align">
+              <img alt="Access Point" src="images/accesspoint.svg" style="width:42px;vertical-align:middle"/>
+              <h5 style="padding-left:10px;vertical-align:middle;display:inline;" class="grey-text text-darken-2 thin">Configure wireless</h5>
+          </div>
+          <div class="row" ng-include="'configure.html'" ng-controller="ConfigureCtrl"></div>
+        </div>
+        <div id="diagnostic">
+          <div class="row center-align">
+              <img alt="Diagnostic" src="images/diagnostic.svg" style="width:42px;vertical-align:middle"/>
+              <h5 style="padding-left:10px;vertical-align:middle;display:inline;" class="grey-text text-darken-2 thin">Test sensors</h5>
+          </div>
+          <div class="row" ng-include="'sensors.html'" ng-controller="SensorsCtrl"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="padding:15px">
+      <div class="col s3 m2 right-align">
+        <h6 class="grey-text light" style="font-size:90%">Device ID:</h6>
+        <h6 class="grey-text light" style="font-size:90%">Image:</h6>
+        <h6 class="grey-text light" style="font-size:90%">Software:</h6>
+      </div>
+      <div class="col s9 m2">
+        <h6 class="grey-text bold" style="font-size:90%">{{devid}}</h6>
+        <h6 class="grey-text bold" style="font-size:90%">{{devos}}</h6>
+        <h6 class="grey-text bold" style="font-size:90%">{{devsw}}</h6>
+      </div>
+      <div class="col s3 m2 right-align">
+        <h6 class="grey-text light" style="font-size:90%">MAC Addr:</h6>
+        <h6 class="grey-text light" style="font-size:90%">IPv4:</h6>
+        <h6 class="grey-text light" style="font-size:90%">IPv6:</h6>
+      </div>
+      <div class="col s9 m2">
+        <h6 class="grey-text bold" style="font-size:90%">{{mac}}</h6>
+        <h6 class="grey-text bold" style="font-size:90%">{{ip4}}</h6>
+        <h6 class="grey-text bold" style="font-size:90%">{{ip6}}</h6>
+      </div>
+    </div>
+    </main>
+
+    <footer id="apfoot" style="background-color:rgb(90,160,200);padding:10px" class="page-footer white-text light">
+        <h7 style="line-height:32px">SO+ER &copy; 2014-{{cyear}} APIS Point, LLC</h7>
+        <img class="right" alt="ap" src="images/ap.svg" style="height:32px"/>
+    </footer>
+
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/plotly-gl3d.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/angular-dom-events.js"></script>
+    <script src="configure.js"></script>
+    <script src="provision.js"></script>
+    <script src="signin.js"></script>
+    <script src="calibrate.js"></script>
+    <script src="sensors.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

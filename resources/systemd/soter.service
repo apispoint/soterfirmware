@@ -1,0 +1,10 @@
+[Unit]
+Description=Soter
+After=webapp.service
+
+[Service]
+Restart=on-failure
+ExecStart=/bin/sh /opt/apispoint/soter/soter.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col s12 m8 offset-m2" style="padding-bottom:15px">
+    <h7 class="grey-text light ">Network Security: </h7>
+  </div>
+  <div class="col s12 m8 offset-m3">
+    <p>
+      <label>
+        <input class="with-gap" name="secproto" type="radio" ng-model="wifi.sec" value="wep"/>
+        <span>WEP</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <input class="with-gap" name="secproto" type="radio" ng-model="wifi.sec" value="psk"/>
+        <span>WPA & WPA2</span>
+      </label>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="input-field col s12 m8 offset-m2">
+    <input id="netname" ng-model="wifi.name" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+    <label ng-class="{'active': wifi.name}" for="netname">Network Name (SSID)</label>
+  </div>
+</div>
+<div class="row">
+  <div class="input-field col s12 m8 offset-m2">
+    <input id="netpassword" ng-model="wifi.passwd" type="{{showpasswd}}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+    <label ng-class="{'active': wifi.passwd}" for="netpassword">Network Password</label>
+  </div>
+</div>
+<div class="row">
+  <div class="col s12 m8 offset-m2">
+    <label>
+      <input class="checkbox-blue" type="checkbox" ng-click="togglePassword($event)"/>
+      <span>Show network password</span>
+    </label>
+  </div>
+</div>
+<div class="row">
+  <div class="col s12 m8 offset-m2">
+    <h6 class="grey-text light" style="display:inline">Internet:</h6> <h6 class="grey-text bold" style="display:inline">{{connected}}</h6>
+  </div>
+</div>
+<div class="row center-align">
+  <a class="waves-effect waves-blue btn-flat blue-text" ng-class="{'disabled': disable || !(wifi.name && wifi.passwd) || (wifi.sec == wifiprev.sec && wifi.name == wifiprev.name && wifi.passwd == wifiprev.passwd)}" ng-click="configWifi(false)">Save</a>
+  <a class="waves-effect waves-blue btn-flat blue-text" ng-class="{'disabled': !devid  || connected !== 'up'}" ng-click="nextProvision()">Next</a>
+  <a class="waves-effect waves-blue btn-flat blue-text" ng-class="{'disabled': disable || !(wifi.name && wifi.passwd) || !(wifi.sec == wifiprev.sec && wifi.name == wifiprev.name && wifi.passwd == wifiprev.passwd)}" ng-click="configWifi(true)">Renew</a>
+</div>

@@ -1,0 +1,12 @@
+[Unit]
+Description=Soter-Pinouts
+After=generic-board-startup.service
+Before=bb-wl18xx-wlan0.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/sh /opt/apispoint/soter/pinouts-cfg.sh
+
+[Install]
+WantedBy=multi-user.target

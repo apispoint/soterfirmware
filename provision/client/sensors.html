@@ -1,0 +1,122 @@
+<ul class="collapsible grey-text text-darken-2" dom-on-create="uiCreated()">
+  <li>
+    <div class="collapsible-header grey-text">
+      <img alt="Diagnostic" src="images/temperature.svg" style="width:42px;vertical-align:middle"/>
+      <h5 style="padding-left:10px;vertical-align:middle;display:inline;" class="thin">Temperature</h5>
+    </div>
+    <div class="collapsible-body">
+
+      <div class="row valign-wrapper">
+        <div class="col">
+          <a ng-class="{'disabled': tmpRunning}" class="waves-effect waves-blue btn-flat blue-text" ng-click="tmpButton()">Begin Test</a>
+        </div>
+        <div class="col">
+          <h5 style="padding-bottom:8px" class="right-align thin">{{tmpc}}<br>{{tmpf}}</h5>
+        </div>
+        <div class="col">
+          <h5 style="padding-bottom:8px" class="thin">&#8451;<br>&#8457;</h5>
+        </div>
+      </div>
+      <div class="row" ng-show="tmpRunning">
+        <div class="progress">
+          <div class="indeterminate"></div>
+        </div>
+      </div>
+
+    </div>
+  </li>
+  <li>
+    <div class="collapsible-header grey-text">
+      <img alt="Diagnostic" src="images/gps.svg" style="width:42px;vertical-align:middle"/>
+      <h5 style="padding-left:10px;vertical-align:middle;display:inline;" class="thin">GPS</h5>
+    </div>
+    <div class="collapsible-body">
+
+      <div class="row">
+        <a ng-class="{'disabled': gpsRunning}" class="waves-effect waves-blue btn-flat blue-text" ng-click="gpsButton()">Begin Test</a>
+      </div>
+      <div class="row" ng-show="gpsRunning">
+        <div class="progress">
+          <div class="indeterminate"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h5 style="padding-bottom:8px" class="right-align thin">{{lat}}<br>{{lon}}<br>{{alt}}<br>{{tim}}</h5>
+        </div>
+        <div class="col">
+          <h5 style="padding-bottom:8px" class="thin">lat&deg;<br>lon&deg;<br>m<br>ms</h5>
+        </div>
+      </div>
+
+    </div>
+  </li>
+  <li>
+    <div class="collapsible-header grey-text">
+      <img alt="Diagnostic" src="images/compass.svg" style="width:42px;vertical-align:middle"/>
+      <h5 style="padding-left:10px;vertical-align:middle;display:inline;" class="thin">Magnetometer</h5>
+    </div>
+    <div class="collapsible-body">
+
+      <div class="row valign-wrapper">
+        <div class="col">
+          <a ng-class="{'disabled': magRunning}" class="waves-effect waves-blue btn-flat blue-text" ng-click="magButton()">Begin Test</a>
+        </div>
+        <div class="col">
+          <h5 style="padding-bottom:8px" class="thin">Bearing<br>{{mag}}&deg;</h5>
+        </div>
+      </div>
+      <div class="row" ng-show="magRunning">
+        <div class="progress">
+          <div class="indeterminate"></div>
+        </div>
+      </div>
+
+    </div>
+  </li>
+  <li>
+    <div class="collapsible-header grey-text" ng-click="resizePlotly(50)">
+      <img alt="Diagnostic" src="images/array.svg" style="width:42px;vertical-align:middle"/>
+      <h5 style="padding-left:10px;vertical-align:middle;display:inline;" class="thin">Microphone Array</h5>
+    </div>
+    <div class="collapsible-body">
+
+      <div class="row">
+        <h7 class="light grey-text text-darken-2">Running mic diagnostic after provisioning results in lower sps, this is normal.</h7>
+      </div>
+      <div class="row">
+        <a ng-class="{'disabled': spsRunning || micRunning}" class="waves-effect waves-blue btn-flat blue-text" ng-click="micButton()">Begin Test</a>
+      </div>
+      <div class="row" ng-show="spsRunning || micRunning">
+        <div class="progress">
+          <div class="indeterminate"></div>
+        </div>
+      </div>
+      <div class="row">
+        <h5 style="padding-bottom:8px;display:inline" class="thin">{{sps}} sps</h5>
+        <h7 class="thin" style="display:inline">estimated</h7>
+      </div>
+      <div class="row grey-text text-darken-2" ng-show="micRunning">
+        <h7 class="light" style="display:inline">Capturing 3 seconds... GO!</h7>
+      </div>
+      <div id="micDivRow" class="row">
+        <div dom-on-create="createMicPlotly()" id="micDiv" style="height:200px;border-color:#BDBDBD;border-style:dashed;border-radius:10px;overflow:hidden"></div>
+      </div>
+
+    </div>
+  </li>
+</ul>
+
+<div class="section center grey lighten-1">
+    <h6 class="white-text">Firmware Options</h6>
+</div>
+<div class="section center">
+    <a class="blue-text waves-effect waves-blue btn-flat" ng-disabled="updating || rebooting || connected != 'up'" ng-click="fwTask(false)">UPDATE</a>
+    <a class="blue-text waves-effect waves-blue btn-flat" ng-disabled="updating || rebooting || devos == devsw" ng-click="fwTask(true)">RESTORE</a>
+    <div class="section light grey-text text-darken-1" style="white-space: pre-wrap;" ng-show="updatestatus">{{updatestatus}}</div>
+    <div class="row" ng-show="updating">
+      <div class="progress">
+        <div class="indeterminate"></div>
+      </div>
+    </div>
+</div>

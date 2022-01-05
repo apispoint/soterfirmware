@@ -1,0 +1,11 @@
+[Unit]
+Description=Provisioning Client
+After=bb-wl18xx-wlan0.service
+Before=soter.service
+
+[Service]
+Restart=on-failure
+ExecStart=/bin/sh /opt/apispoint/provision/webapp.sh
+
+[Install]
+WantedBy=multi-user.target

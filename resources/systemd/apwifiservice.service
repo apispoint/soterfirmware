@@ -1,0 +1,11 @@
+[Unit]
+Description=Provisioning AP Wi-Fi Support Service
+After=bb-wl18xx-wlan0.service
+Before=webapp.service
+
+[Service]
+Restart=on-failure
+ExecStart=/bin/sh /opt/apispoint/provision/services/apwifiservice.sh
+
+[Install]
+WantedBy=multi-user.target

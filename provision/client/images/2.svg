@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="29.672" height="29.672" viewBox="0, 0, 29.672, 29.672">
+  <g id="2" transform="translate(-1.164, -1.164)">
+    <path d="M16.5,30.336 C8.858,30.336 2.664,24.142 2.664,16.5 C2.664,8.858 8.858,2.664 16.5,2.664 C24.142,2.664 30.336,8.858 30.336,16.5 C30.336,24.142 24.142,30.336 16.5,30.336 z" fill-opacity="0" stroke="#FFFFFF" stroke-width="1.5"/>
+    <text transform="matrix(1, 0, 0, 1, 16.585, 16)" id="3" display="none">
+      <tspan x="-4.515" y="5" font-family="Menlo-Bold" font-size="15" fill="#FFFFFF">3</tspan>
+    </text>
+    <text transform="matrix(1, 0, 0, 1, 16.585, 16)" id="2">
+      <tspan x="-4.515" y="5" font-family="Menlo-Bold" font-size="15" fill="#FFFFFF">2</tspan>
+    </text>
+    <text transform="matrix(1, 0, 0, 1, 16.115, 16)" display="none">
+      <tspan x="-4.515" y="5" font-family="Menlo-Bold" font-size="15" fill="#FFFFFF">1</tspan>
+    </text>
+  </g>
+</svg>

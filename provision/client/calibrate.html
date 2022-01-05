@@ -1,0 +1,15 @@
+<div class="row center-align">
+  <a ng-class="{'disabled': running}" class="waves-effect waves-blue btn-flat blue-text" ng-click="calibrate()">Calibrate</a>
+</div>
+<div class="row center-align" ng-show="running">
+  <div class="progress">
+    <div class="indeterminate"></div>
+  </div>
+  <h6 class="thin grey-text">Rotate the device in every direction</h6>
+  <h6 class="thin grey-text">30 seconds</h6>
+</div>
+<div class="row valign-wrapper grey-text text-darken-2">
+  <div class="col s6"><h5 class="right-align">Offsets</h5></div>
+  <div class="col s6"><h6>x: {{running ? waiting : ox}}<br>y: {{running ? waiting : oy}}<br>z: {{running ? waiting : oz}}</h6></div>
+</div>
+<div dom-on-create="createPlotly()" class="row" id="calDiv" style="width:300px;height:300px;border-color:#BDBDBD;border-style:dashed;border-radius:10px;overflow:hidden"></div>

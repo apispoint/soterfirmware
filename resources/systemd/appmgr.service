@@ -1,0 +1,11 @@
+[Unit]
+Description=AppMgr Support Service
+After=bb-wl18xx-wlan0.service
+Before=webapp.service
+
+[Service]
+Restart=on-failure
+ExecStart=/bin/sh /opt/apispoint/appmgr/appmgrservice.sh
+
+[Install]
+WantedBy=multi-user.target

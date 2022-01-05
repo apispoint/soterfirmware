@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="input-field col s12 m8 offset-m2">
+    <input id="appasswordwifi" ng-model="appasswords.wifi" type="{{showpasswd}}" class="validate" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+    <label ng-class="{'active': appasswords.wifi}" for="appasswordwifi">Access Point Password</label>
+  </div>
+</div>
+<div class="row">
+  <div class="input-field col s12 m8 offset-m2">
+    <input id="appasswordconf" ng-model="appasswords.conf" type="{{showpasswd}}" class="validate" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+    <label for="appasswordconf">Confirm Access Point Password</label>
+  </div>
+</div>
+<div class="row">
+  <div class="col s12 m8 offset-m2">
+    <label>
+      <input class="checkbox-blue" type="checkbox" ng-click="toggleAPPassword($event)"/>
+      <span>Show access point passwords</span>
+    </label>
+  </div>
+</div>
+<div class="row center-align">
+  <a class="waves-effect waves-blue btn-flat blue-text" ng-class="{'disabled': appasswords.wifi != appasswords.conf || !appasswords.wifi}" ng-click="configAP();">Save</a>
+</div>
